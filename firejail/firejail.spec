@@ -1,7 +1,7 @@
-%global     commit     95b4bd30d29d9e7f2b07c3f51ef311aaa62fbcd5
+%global     commit     5bef777f30c7d5c2640486d33453b8648beb1eee
 %global     githash    %(c=%{commit}; echo ${c:0:7})
-%global     gitdate    20160128
-%global     gittime    0820
+%global     gitdate    20160711
+%global     gittime    1001
 
 Name:       firejail
 Version:    0.9.40
@@ -38,6 +38,7 @@ rm -rf %{buildroot}
 %{_bindir}/firemon
 %{_bindir}/firecfg
 
+%{_libdir}/firejail/faudit
 %{_libdir}/firejail/firecfg.config
 %{_libdir}/firejail/ftee
 %{_libdir}/firejail/fshaper.sh
@@ -56,7 +57,10 @@ rm -rf %{buildroot}
 %config %{_sysconfdir}/firejail
 
 %changelog
-* Sat May 14 2016 ssabchew <ssabchew at yahoo.com > 0.9.40-1
+* Tue Jul 12 2016 ssabchew <ssabchew at yahoo.com> 0.9.40-2
+- updated to latest master
+
+* Sat May 14 2016 ssabchew <ssabchew at yahoo.com> 0.9.40-1
 - Update to dev version 0.9.40
 
 * Mon Sep 14 2015 netblue30 <netblue30@yahoo.com> 0.9.30-1
