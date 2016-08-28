@@ -1,10 +1,10 @@
-%global     commit     5bef777f30c7d5c2640486d33453b8648beb1eee
+%global     commit     80c8015d7d3158dcd44b48f83658f2c61e14eddf
 %global     githash    %(c=%{commit}; echo ${c:0:7})
-%global     gitdate    20160711
-%global     gittime    1001
+%global     gitdate    20160828
+%global     gittime    0859
 
 Name:       firejail
-Version:    0.9.40
+Version:    0.9.42
 Release:    1.%{gitdate}%{gittime}git%{githash}%{?dist}
 Summary:    Linux namepaces sandbox program
 
