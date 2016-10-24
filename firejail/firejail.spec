@@ -58,6 +58,9 @@ rm -rf %{buildroot}
 %config %{_sysconfdir}/firejail
 
 %changelog
+* Mon Oct 24 2016 ssabchew <ssabchew at yahoo.com> 0.9.44-1
+- updated to latest version in master.
+
 * Tue Jul 12 2016 ssabchew <ssabchew at yahoo.com> 0.9.40-2
 - updated to latest master
 
