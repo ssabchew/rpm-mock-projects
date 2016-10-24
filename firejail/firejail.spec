@@ -1,12 +1,12 @@
-%global     commit     80c8015d7d3158dcd44b48f83658f2c61e14eddf
+%global     commit     2399e09e66e94ca473c13a10e45f50bd38594bbe
 %global     githash    %(c=%{commit}; echo ${c:0:7})
-%global     gitdate    20160828
-%global     gittime    0859
+%global     gitdate    20161023
+%global     gittime    1059
 
 Name:       firejail
-Version:    0.9.42
+Version:    0.9.44
 Release:    1.%{gitdate}%{gittime}git%{githash}%{?dist}
-Summary:    Linux namepaces sandbox program
+Summary:    Linux namespaces sandbox program
 
 License:    GPL+
 Group:      Development/Tools
@@ -14,7 +14,7 @@ Source0:    https://github.com/netblue30/firejail/archive/%{commit}/%{name}-v%{v
 URL:        https://github.com/netblue30/firejail
 
 %description
-Firejail  is  a  SUID sandbox program that reduces the risk of security
+Firejail is a SUID sandbox program that reduces the risk of security
 breaches by restricting the running environment of untrusted applications
 using Linux namespaces. It includes a sandbox profile for Mozilla Firefox.
 
@@ -22,7 +22,7 @@ using Linux namespaces. It includes a sandbox profile for Mozilla Firefox.
 %setup -q -n %{name}-%{commit}
 
 %build
-%configure --prefix=%{_prefix}
+%configure --prefix=%{_prefix} --disable-apparmor
 make %{?_smp_mflags}
 
 %install
@@ -42,6 +42,7 @@ rm -rf %{buildroot}
 %{_libdir}/firejail/firecfg.config
 %{_libdir}/firejail/ftee
 %{_libdir}/firejail/fshaper.sh
+%{_libdir}/firejail/libconnect.so
 %{_libdir}/firejail/libtrace.so
 %{_libdir}/firejail/libtracelog.so
 %{_datarootdir}/bash-completion/completions/firecfg
@@ -51,7 +52,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/firecfg.1.gz
 %{_mandir}/man1/firejail.1.gz
 %{_mandir}/man1/firemon.1.gz
-%{_mandir}/man5/firejail-config.5.gz
+#%%{_mandir}/man5/firejail-config.5.gz
 %{_mandir}/man5/firejail-login.5.gz
 %{_mandir}/man5/firejail-profile.5.gz
 %config %{_sysconfdir}/firejail
