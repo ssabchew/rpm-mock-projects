@@ -1,10 +1,10 @@
-%global     commit     2399e09e66e94ca473c13a10e45f50bd38594bbe
+%global     commit     89f2705ae1e91b5b145cbe6c956977290f7980f4
 %global     githash    %(c=%{commit}; echo ${c:0:7})
-%global     gitdate    20161023
-%global     gittime    1059
+%global     gitdate    20161224
+%global     gittime    1329
 
 Name:       firejail
-Version:    0.9.44
+Version:    0.9.45
 Release:    1.%{gitdate}%{gittime}git%{githash}%{?dist}
 Summary:    Linux namespaces sandbox program
 
@@ -19,6 +19,10 @@ breaches by restricting the running environment of untrusted applications
 using Linux namespaces. It includes a sandbox profile for Mozilla Firefox.
 
 %prep
+echo ===
+echo /usr/lib64/firejail/fcopy
+echo ===
+
 %setup -q -n %{name}-%{commit}
 
 %build
@@ -31,20 +35,14 @@ make DESTDIR=%{buildroot} install
 %clean
 rm -rf %{buildroot}
 
-
 %files
 %doc
 %attr(4755, -, -) %{_bindir}/firejail
 %{_bindir}/firemon
 %{_bindir}/firecfg
 
-%{_libdir}/firejail/faudit
-%{_libdir}/firejail/firecfg.config
-%{_libdir}/firejail/ftee
-%{_libdir}/firejail/fshaper.sh
-%{_libdir}/firejail/libconnect.so
-%{_libdir}/firejail/libtrace.so
-%{_libdir}/firejail/libtracelog.so
+%{_libdir}/%{name}/*
+
 %{_datarootdir}/bash-completion/completions/firecfg
 %{_datarootdir}/bash-completion/completions/firejail
 %{_datarootdir}/bash-completion/completions/firemon
@@ -52,7 +50,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/firecfg.1.gz
 %{_mandir}/man1/firejail.1.gz
 %{_mandir}/man1/firemon.1.gz
-#%%{_mandir}/man5/firejail-config.5.gz
 %{_mandir}/man5/firejail-login.5.gz
 %{_mandir}/man5/firejail-profile.5.gz
 %config %{_sysconfdir}/firejail
